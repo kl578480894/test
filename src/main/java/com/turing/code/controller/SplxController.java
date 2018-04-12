@@ -130,6 +130,23 @@ public class SplxController {
 		return "redirect:query.action";
 	}
 	
+	/**
+	 * @方法名: delete   
+	 * @描述: 商品类型的删除方法
+	 * @作者: 郎国峰
+	 * @时间: 2018年4月12日 下午6:12:44
+	 * @param ids
+	 * @return
+	 */
+	@RequestMapping("delete")
+	public String delete(String[] ids){
+		//添加日志
+		logUtils.write("商品类型", 3, "删除一些信息");
+		//调
+		splxService.deleteById(ids);
+		//转
+		return "redirect:query.action";
+	}
 	
 	
 	

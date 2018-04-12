@@ -68,5 +68,17 @@ public class SplxServiceImpl implements ISplxService{
 		// TODO Auto-generated method stub
 		splxMapper.updateByPrimaryKey(splx);
 	}
+
+	/* (non-Javadoc)
+	 * @see com.turing.code.service.ISplxService#deleteById(java.lang.String[])
+	 */
+	@Override
+	public void deleteById(String[] ids) {
+		// TODO Auto-generated method stub
+		for (int i = 0; i < ids.length; i++) {
+			splxMapper.deleteByPrimaryKey(ids[i]);
+		}
+		
+	}
 	
 }

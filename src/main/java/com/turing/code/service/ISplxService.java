@@ -59,4 +59,13 @@ public interface ISplxService {
 	 */  
 	void edit(CodeShangpinleixing splx);
 
+	/**   
+	 * @方法名: deleteById   
+	 * @描述: 根据id删除商品类型信息
+	 * @作者: 郎国峰
+	 * @时间: 2018年4月12日 下午6:14:11
+	 * @param ids	         
+	 */  
+	void deleteById(String[] ids);
+
 }

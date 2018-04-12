@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.turing.code.mapper.CodeJinjichengduMapper">
+  <resultMap id="BaseResultMap" type="com.turing.code.entity.CodeJinjichengdu">
+    <id column="CJC_ID" jdbcType="VARCHAR" property="cjcId" />
+    <result column="CJC_NAME" jdbcType="VARCHAR" property="cjcName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    CJC_ID, CJC_NAME
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CODE_JINJICHENGDU
+    where CJC_ID = #{cjcId,jdbcType=VARCHAR}
+  </select>
+    <!-- 
+  		查询所有信息
+   -->
+  <select id="query" resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    from CODE_JINJICHENGDU
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from CODE_JINJICHENGDU
+    where CJC_ID = #{cjcId,jdbcType=VARCHAR}
+  </delete>
+  
+  <insert id="insert" parameterType="com.turing.code.entity.CodeJinjichengdu">
+    insert into CODE_JINJICHENGDU (CJC_ID, CJC_NAME)
+    values (#{cjcId,jdbcType=VARCHAR}, #{cjcName,jdbcType=VARCHAR})
+  </insert>
+  
+  <insert id="insertSelective" parameterType="com.turing.code.entity.CodeXinyvdengji">
+    insert into CODE_XINYVDENGJI
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cxyId != null">
+        CXY_ID,
+      </if>
+      <if test="cxyName != null">
+        CXY_NAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cxyId != null">
+        #{cxyId,jdbcType=VARCHAR},
+      </if>
+      <if test="cxyName != null">
+        #{cxyName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.turing.code.entity.CodeJinjichengdu">
+    update CODE_JINJICHENGDU
+    <set>
+      <if test="cjcName != null">
+        CJC_NAME = #{cjcName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where CJC_ID = #{cjcId,jdbcType=VARCHAR}
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="com.turing.code.entity.CodeXinyvdengji">
+    update CODE_XINYVDENGJI
+    set CXY_NAME = #{cxyName,jdbcType=VARCHAR}
+    where CXY_ID = #{cxyId,jdbcType=VARCHAR}
+  </update>
+  <!-- 查询分页数据 -->
+  <select id="queryForPage" resultMap="BaseResultMap" parameterType="com.turing.code.page.XydjPage">
+  	SELECT * FROM (SELECT ROWNUM RN,T.* FROM ( SELECT CXY_ID, CXY_NAME FROM CODE_XINYVDENGJI)T)
+  	<![CDATA[
+  	WHERE RN > #{start} AND RN <= #{end}
+  	]]>
+  </select>
+  <!-- 查询总记录数 -->
+  <select id="queryForCount" resultType="int" parameterType="com.turing.code.page.XydjPage">
+  	SELECT COUNT(*) FROM CODE_XINYVDENGJI
+  	
+  </select>
+</mapper>

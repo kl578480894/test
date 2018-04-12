@@ -1,22 +1,23 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+
 <%@ include file="/common/include.jsp" %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>查询商品类型</title>
+		<title>查询商品品牌</title>
 	</head>
 	<body style="background:linear-gradient(white,#ebebeb,white);">
 		<label class="control-label label-default col-xs-12 " style="margin-bottom: 30px;">
-			<h4>当前位置：商品类型 － 查询商品类型</h4>
+			<h4>当前位置：商品品牌 － 查询商品品牌</h4>
 		</label>
 		<div class="container">
-			<form method="post" action="<%=ctx %>/splx/query.action" name="searchForm">
+			<form method="post" action="<%=ctx %>/sppp/query.action" name="searchForm">
 				<%-- 此处放条件查询 --%>
 			</form>
 		</div>
-		<form action="<%=ctx %>/splx/delete.action" method="post" name="delForm">
+		<form action="<%=ctx %>/sppp/delete.action" method="post" name="delForm">
 		<div class="container ">
 			<table class="table table-hover table-striped table-condensed text-center" >
 				<caption class="text-center" style="border: 0px solid;">
@@ -27,25 +28,27 @@
 						</div>
 					</div>
 					<div class="col-sm-5 text-center">
-						<strong>商品类型信息</strong>
+						<strong>商品品牌信息</strong>
 					</div>
 				</caption>
 				<thead >
 					<tr class="bg-primary">
 						<td>序号</td>
 						<td><a href="javascript:selectAll()"><font style="color: white;">全选</font></a></td>
-						<td>商品类型名称</td>
+						<td>商品品牌名称</td>
+						<td>商品品牌介绍</td>
 						<td>操作</td>
 					</tr>
 				</thead>
 				<tbody>
-				<c:forEach items="${splxList }" var="splx" varStatus="i">
+				<c:forEach items="${list }" var="sppp" varStatus="i">
 					<tr>
 						<td>${i.count}</td>
-						<td><input type="checkbox" name="ids" value="${splx.cslId}"></td>
-						<td>${splx.cslName}</td>
+						<td><input type="checkbox" name="ids" value="${sppp.cspId}"></td>
+						<td>${sppp.cspName}</td>
+						<td>${sppp.cspInfo}</td>
 						<td>
-							<button onclick="editpage('${splx.cslId}')" type="button" class="btn-sm btn-primary">修改</button>
+							<button onclick="editpage('${sppp.cspId}')" type="button" class="btn-sm btn-primary">修改</button>
 						</td>
 					</tr>
 					</c:forEach>
@@ -66,11 +69,11 @@
 </html>
 <script type="text/javascript">
 	function addpage(){
-		window.location.href = "<%=ctx%>/splx/addpage.action";
+		window.location.href = "<%=ctx%>/sppp/addpage.action";
 	}
 	
 	function editpage(id){
-		window.location.href = "<%=ctx%>/splx/editpage.action?id="+id;
+		window.location.href = "<%=ctx%>/sppp/editpage.action?id="+id;
 	}
 	
 	function del(){

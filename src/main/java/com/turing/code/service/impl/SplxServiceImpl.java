@@ -3,7 +3,7 @@
  * @路径: com.turing.code.service.impl
  * @描述: TODO(用一句话描述该文件做什么)
  * @作者: 郎国峰
- * @时间: 2018年3月18日 下午8:11:54
+ * @时间: 2018年4月12日 下午1:37:49
  * @version V1.0  
  */ 
 package com.turing.code.service.impl;
@@ -22,22 +22,51 @@ import com.turing.code.service.ISplxService;
  * 路径: com.turing.code.service.impl
  * 描述: 商品类型模型层实现类
  * 作者: 郎国峰
- * 时间: 2018年3月18日 下午8:11:54
+ * 时间: 2018年4月12日 下午1:37:49
  * 版本: @version V1.0  
  */
 @Service
 public class SplxServiceImpl implements ISplxService{
-	//商品类型mapper
+	/**
+	 * 商品类型mapper
+	 */
 	@Autowired
-	private CodeShangpinleixingMapper codeShangpinleixingMapper;
-	
+	private CodeShangpinleixingMapper splxMapper;
+
 	/* (non-Javadoc)
 	 * @see com.turing.code.service.ISplxService#queryAll()
 	 */
 	@Override
 	public List<CodeShangpinleixing> queryAll() {
 		// TODO Auto-generated method stub
-		return codeShangpinleixingMapper.queryAll();
+		return splxMapper.queryAll();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.turing.code.service.ISplxService#save(com.turing.code.entity.CodeShangpinleixing)
+	 */
+	@Override
+	public void save(CodeShangpinleixing splx) {
+		// TODO Auto-generated method stub
+		splxMapper.insert(splx);
+	}
+
+	/* (non-Javadoc)
+	 * @see com.turing.code.service.ISplxService#editpage(java.lang.String)
+	 */
+	@Override
+	public CodeShangpinleixing editpage(String id) {
+		// TODO Auto-generated method stub
+		return splxMapper.selectByPrimaryKey(id);
+	}
+
+	/* (non-Javadoc)
+	 * @see com.turing.code.service.ISplxService#edit(com.turing.code.entity.CodeShangpinleixing)
+	 */
+	@Override
+	public void edit(CodeShangpinleixing splx) {
+		// TODO Auto-generated method stub
+		splxMapper.updateByPrimaryKey(splx);
+	}
+	
 }

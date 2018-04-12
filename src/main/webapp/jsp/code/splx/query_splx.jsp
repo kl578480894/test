@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/common/include.jsp" %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -39,7 +39,7 @@
 					</tr>
 				</thead>
 				<tbody>
-				<c:forEach items="${splxList }" var="splx" varStatus="i">
+				<c:forEach items="${list }" var="splx" varStatus="i">
 					<tr>
 						<td>${i.count}</td>
 						<td><input type="checkbox" name="ids" value="${splx.cslId}"></td>

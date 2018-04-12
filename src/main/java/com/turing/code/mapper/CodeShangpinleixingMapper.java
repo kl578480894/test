@@ -30,4 +30,5 @@ public interface CodeShangpinleixingMapper {
     @Select("select csl_id, csl_name from code_shangpinleixing")
     @ResultMap("BaseResultMap")
 	List<CodeShangpinleixing> queryAll();
+
 }

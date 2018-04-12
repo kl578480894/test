@@ -1,11 +1,87 @@
- <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ include file="/common/include.jsp" %>
 
-</body>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body style="background:linear-gradient(white,#ebebeb,white);">
+		<label class="control-label label-default col-xs-12 " style="margin-bottom: 30px;">
+			<h4>当前位置：商品类型 － 增加商品类型</h4>
+		</label>
+		<div class="container">
+			<hr>
+			<form class="form-horizontal text-center" name="infoForm" action="javascript:doSub()" method="post">
+				<div class="container ">
+					<div class="form-group">
+						<label class="control-label col-sm-2 col-md-2">商品类型名称:</label>
+						<div class="col-md-9 col-sm-9">
+							<input class="form-control" name="cslName" placeholder="请输入商品类型名称" value="${splx.cslName }"/>
+							<input class="form-control" name="cslId" value="${splx.cslId }" type="hidden"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-lg-3 col-md-3 col-sm-2 col-xs-2">
+							
+						</div>
+						<div class=" col-lg-6 col-md-6 col-sm-8 col-xs-8" >
+							<div class="col-md-6 col-sm-6">
+								<input class="form-control btn-primary" type="submit" value="提交" />
+							</div>
+							<div class="col-md-6 col-sm-6">
+								<input class="form-control btn-primary" type="button" onclick="goBack()" value="返回" />
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-3 col-sm-2 col-xs-2">
+							
+						</div>
+					</div>
+				</div>
+			</form>
+				<hr/>
+		</div>
+		
+		<!-- 模态框 -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" 
+		   aria-labelledby="myModalLabel" aria-hidden="true">
+		   <div class="modal-dialog">
+		      <div class="modal-content">
+		         <div class="modal-header" style="background-color: rgba(0,0,0,0.1)">
+		            <button type="button" class="close" data-dismiss="modal" 
+		               aria-hidden="true">×
+		            </button>
+		            <h4 class="modal-title" id="myModalLabel">
+		              	确认提交
+		            </h4>
+		         </div>
+		         <div class="modal-body text-center" id="modalBody">
+		           	是否确认提交?
+		         </div>
+		         <div class="modal-footer" id="modalFooter2">
+		            <button type='button' class='btn btn-primary' data-dismiss='modal' onclick='tijiao()'>提交</button>
+		            <button type='button' class='btn btn-default' data-dismiss='modal'>关闭</button>
+		         </div>
+		      </div>
+		   </div>
+		</div>
+	</body>
 </html>
+<script type="text/javascript">
+	
+	
+	function doSub(){
+		$("#myModal").modal('show');
+	}
+	
+	function tijiao(){
+		$("form[name='infoForm']").attr("action","<%=ctx%>/splx/edit.action");
+		$("form").submit();
+	}
+	
+	function goBack(){
+		history.go(-1);
+	}
+</script>
